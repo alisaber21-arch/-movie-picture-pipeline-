@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 env:
+  CFLAGS: -std=gnu17
   AWS_REGION: us-east-1
   EKS_CLUSTER: cluster
   ECR_REPOSITORY: backend

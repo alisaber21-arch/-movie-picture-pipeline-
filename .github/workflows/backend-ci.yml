@@ -6,6 +6,9 @@ on:
     paths: ['starter/backend/**', '.github/workflows/backend-ci.yml']
   workflow_dispatch:
 
+env:
+  CFLAGS: -std=gnu17
+
 defaults:
   run:
     working-directory: starter/backend

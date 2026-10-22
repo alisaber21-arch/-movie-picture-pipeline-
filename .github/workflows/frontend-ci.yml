@@ -40,5 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Use mirror for base images (avoids public ECR rate limits)
+        run: sed -i 's#public.ecr.aws/docker/library/#mirror.gcr.io/library/#' Dockerfile
       - name: Build Docker image
         run: docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 -t frontend:${{ github.sha }} .

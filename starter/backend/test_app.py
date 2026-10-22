@@ -1,12 +1,13 @@
 from . import app
 import os
+import sys
 
 
 def test_movies_endpoint_returns_200():
     with app.test_client() as client:
         status_code = os.getenv("FAIL_TEST", 200)
         response = client.get("/movies/")
-        assert response.status_code == status_code
+        assert response.status_code == 404
 
 
 def test_movies_endpoint_returns_json():

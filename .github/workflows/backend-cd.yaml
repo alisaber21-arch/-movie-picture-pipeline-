@@ -54,6 +54,12 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Login to public ECR (avoids pull rate limits)
+        continue-on-error: true
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
       - id: ecr
         uses: aws-actions/amazon-ecr-login@v2
 

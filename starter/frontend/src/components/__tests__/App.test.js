@@ -3,7 +3,9 @@ import React from 'react';
 
 import App from '../../App';
 
-const movieHeading = process.env.FAIL_TEST ? 'WRONG_HEADING' : 'Movie List';
+var   badlyFormatted  =   "lint failure"
+
+const movieHeading = 'Wrong Heading';
 
 test('renders Movie List heading', () => {
   render(<App />);

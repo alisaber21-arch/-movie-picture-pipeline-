@@ -80,3 +80,16 @@ jobs:
           kustomize edit set image backend=$IMAGE
           kustomize build | kubectl apply -f -
           kubectl rollout status deployment/backend --timeout=180s
+
+      - name: Verify Kubernetes deployment
+        run: |
+          kubectl rollout status deployment/backend --timeout=180s || true
+          echo "----- Logging - kubectl get all ----"
+          kubectl get all
+          echo "----- Logging - kubectl describe deploy -----"
+          kubectl describe deploy backend
+
+      - name: Verify Backend ECR image
+        run: |
+          echo "----- Logging - Backend ECR Image Details -----"
+          AWS_PAGER="" aws ecr describe-images --repository-name backend --region $AWS_REGION --query 'sort_by(imageDetails,& imagePushedAt)[-1]'
